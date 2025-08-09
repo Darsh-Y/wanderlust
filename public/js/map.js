@@ -1,7 +1,7 @@
 const lat = coordinates[1];
 const lng = coordinates[0];
 
-const map = L.map("map").setView([lat, lng], 12);
+const map = L.map("map").setView([lat, lng], 16);
 
 L.tileLayer("https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=ug38fTaYtK486ZSEyyRm", {
   attribution:

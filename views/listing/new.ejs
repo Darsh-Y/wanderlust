@@ -1,0 +1,104 @@
+<% layout("./layouts/boilerplate.ejs") %>
+
+<div class="auth-page-container d-flex align-items-center justify-content-center">
+  <div class="auth-card shadow-sm border rounded-4 p-4 w-100" style="max-width: 600px;">
+    <h2 class="mb-4 text-center fw-bold">Create a New Listing</h2>
+    <form
+      action="/listings"
+      method="POST"
+      novalidate
+      class="needs-validation"
+      enctype="multipart/form-data"
+    >
+      <!-- Title -->
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input
+          type="text"
+          id="title"
+          name="listing[title]"
+          placeholder="Ex: Hotel Navin"
+          class="form-control rounded-3"
+          required
+        />
+        <div class="invalid-feedback">Please enter a title.</div>
+      </div>
+
+      <!-- Description -->
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          id="description"
+          name="listing[description]"
+          placeholder="Ex: One of the finest hotels in Hubli with extraordinary view of Unakal Lake"
+          class="form-control rounded-3"
+          rows="3"
+          required
+        ></textarea>
+        <div class="invalid-feedback">Please enter a short description.</div>
+      </div>
+
+      <!-- Image Upload -->
+      <div class="mb-3">
+        <label for="image" class="form-label">Upload Listing Image</label>
+        <input
+          type="file"
+          id="image"
+          name="listing[image][url]"
+          class="form-control rounded-3"
+          accept="image/*"
+          required
+        />
+        <div class="invalid-feedback">Please upload an image.</div>
+      </div>
+
+      <div class="row">
+        <!-- Price -->
+        <div class="mb-3 col-12 col-sm-6">
+          <label for="price" class="form-label">Price</label>
+          <input
+            id="price"
+            name="listing[price]"
+            placeholder="Ex: ₹900/night"
+            class="form-control rounded-3"
+            required
+          />
+          <div class="invalid-feedback">Please enter a valid price.</div>
+        </div>
+
+        <!-- Country -->
+        <div class="mb-3 col-12 col-sm-6">
+          <label for="country" class="form-label">Country</label>
+          <input
+            type="text"
+            id="country"
+            name="listing[country]"
+            placeholder="Ex: India"
+            class="form-control rounded-3"
+            required
+          />
+          <div class="invalid-feedback">Please enter a valid country name.</div>
+        </div>
+      </div>
+
+      <!-- Location -->
+      <div class="mb-4">
+        <label for="location" class="form-label">Location</label>
+        <input
+          type="text"
+          id="location"
+          name="listing[location]"
+          placeholder="Ex: Karnataka, Hubli-580020"
+          class="form-control rounded-3"
+          required
+        />
+        <div class="invalid-feedback">Please enter a valid location.</div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="d-grid">
+        <button type="submit" class="btn custom-login-btn btn-lg">Add Listing</button>
+      </div>
+    </form>
+  </div>
+</div>

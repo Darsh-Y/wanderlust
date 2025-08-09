@@ -1,0 +1,158 @@
+<% layout("./layouts/boilerplate.ejs") %>
+
+<script>
+  const coordinates = <%- JSON.stringify(listing.geometry.coordinates) %>;
+</script>
+
+<div class="container py-4">
+  <div class="row g-4">
+    <!-- Left Column: Image + Details (Sticky) -->
+    <div class="col-lg-7 sticky-left-column">
+      <!-- Listing Title -->
+      <h2 class="mb-3 fw-bold listing-title-show" style="font-family: 'Times New Roman', serif;">
+        <%= listing.title %>
+      </h2>
+
+      <!-- Fixed Size Image Container -->
+      <div class="listing-image-container mb-4">
+        <img src="<%= listing.image.url %>" alt="Listing Image" 
+             class="listing-show-image">
+      </div>
+
+      <!-- Listing Info - Compact Layout -->
+      <div class="listing-details-card">
+        <div class="row g-3">
+          <div class="col-md-8">
+            <p class="mb-2 text-muted owner-info">
+              <i class="bi bi-person-circle"></i> 
+              <strong>Hosted by:</strong> <em><%= listing.owner.username %></em>
+            </p>
+            <p class="listing-description mb-3"><%= listing.description %></p>
+            <p class="location-info mb-2">
+              <i class="bi bi-geo-alt text-danger"></i> 
+              <%= listing.location %>, <%= listing.country %>
+            </p>
+          </div>
+          <div class="col-md-4 text-md-end">
+            <div class="price-container">
+              <p class="price-display">
+                <span class="currency">&#x20B9;</span>
+                <span class="amount"><%= listing.price.toLocaleString("en-IN") %></span>
+                <span class="period">/ 2 night</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <% if(curruser && listing.owner._id.equals(curruser._id)){ %>
+        <div class="action-buttons mt-3 pt-3 border-top">
+          <a class="btn btn-dark btn-sm me-2" href="/listings/<%= listing._id %>/edit">
+            <i class="bi bi-pencil"></i> Edit
+          </a>
+          <form action="/listings/<%= listing._id %>?_method=delete" method="post" class="d-inline">
+            <button class="btn btn-outline-danger btn-sm">
+              <i class="bi bi-trash"></i> Delete
+            </button>
+          </form>
+        </div>
+        <% } %>
+      </div>
+    </div>
+
+    <!-- Right Column: Reviews + Map + Leave Review (Scrollable) -->
+    <div class="col-lg-5 scrollable-right-column">
+      <!-- Reviews Section (Moved to top) -->
+      <div class="reviews-section mb-4">
+        <!-- Display Reviews -->
+        <% if(listing.reviews.length > 0) { %>
+        <div class="reviews-header mb-3">
+          <h5 class="section-heading">
+            <i class="bi bi-star-fill text-warning"></i> 
+            All reviews (<%= listing.reviews.length %>):
+          </h5>
+        </div>
+        
+        <!-- Horizontal Scrolling Reviews Container -->
+        <div class="reviews-horizontal-container">
+          <div class="reviews-scroll-wrapper">
+            <% for(review of listing.reviews) { %>
+            <div class="review-card-horizontal">
+              <div class="review-header">
+                <h6 class="reviewer-name"><b>@<%= review.author.username %></b></h6>
+                <p class="starability-result rating-stars" data-rating="<%= review.rating %>"></p>
+              </div>
+              <p class="review-comment"><%= review.comment %></p>
+              <% if(curruser && review.author._id.equals(curruser._id)){ %>
+              <div class="review-actions">
+                <form method="post" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=delete" class="d-inline">
+                  <button class="btn btn-outline-danger btn-sm">
+                    <i class="bi bi-trash3"></i> Delete
+                  </button>
+                </form>
+              </div>
+              <% } %>
+            </div>
+            <% } %>
+          </div>
+        </div>
+        <% } else { %>
+        <div class="no-reviews-message text-center py-4">
+          <i class="bi bi-chat-dots text-muted" style="font-size: 2rem;"></i>
+          <p class="text-muted mt-2">No reviews yet. Be the first to leave one!</p>
+        </div>
+        <% } %>
+      </div>
+
+      <!-- Map Section (Moved to middle) -->
+      <div class="map-section mb-4">
+        <h5 class="section-heading mb-3">
+          <i class="bi bi-geo-alt text-danger"></i> Where you'll be:
+        </h5>
+        <div class="map-container">
+          <div id="map"></div>
+        </div>
+      </div>
+
+      <!-- Leave Review Section (Moved to bottom) -->
+      <div class="leave-review-section">
+        <% if(curruser) { %>
+        <h5 class="section-heading mb-3">
+          <i class="bi bi-chat-dots"></i> Leave your review:
+        </h5>
+        <form method="post" action="/listings/<%= listing.id %>/reviews" 
+              novalidate class="needs-validation review-form">
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Rating:</label>
+            <fieldset class="starability-grow">
+              <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating.">
+              <input type="radio" id="first-rate1" name="review[rating]" value="1"><label for="first-rate1">1 star</label>
+              <input type="radio" id="first-rate2" name="review[rating]" value="2"><label for="first-rate2">2 stars</label>
+              <input type="radio" id="first-rate3" name="review[rating]" value="3"><label for="first-rate3">3 stars</label>
+              <input type="radio" id="first-rate4" name="review[rating]" value="4"><label for="first-rate4">4 stars</label>
+              <input type="radio" id="first-rate5" name="review[rating]" value="5"><label for="first-rate5">5 stars</label>
+            </fieldset>
+          </div>
+          <div class="mb-3">
+            <label for="comment" class="form-label fw-semibold">Comment:</label>
+            <textarea rows="3" name="review[comment]" id="comment" 
+                      class="form-control" placeholder="Share your experience..." required></textarea>
+            <div class="invalid-feedback">Please enter a comment before submitting.</div>
+          </div>
+          <button class="btn btn-dark btn-sm">
+            <i class="bi bi-send"></i> Submit Review
+          </button>
+        </form>
+        <% } else { %>
+        <div class="login-prompt text-center py-4">
+          <i class="bi bi-person-plus text-muted" style="font-size: 2rem;"></i>
+          <p class="text-muted mt-2 mb-3">Please log in to leave a review</p>
+          <a href="/login" class="btn btn-outline-primary btn-sm">Log In</a>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/map.js"></script>

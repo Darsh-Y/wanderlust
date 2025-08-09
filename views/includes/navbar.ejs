@@ -1,0 +1,80 @@
+<nav class="navbar navbar-expand-lg bg-body-light border-bottom sticky-top">
+  <!-- Navbar Container -->
+  <div class="container-fluid d-flex align-items-center justify-content-between position-relative">
+
+    <!-- Logo -->
+    <a class="navbar-brand me-3" href="/listings">
+      <i class="fa-brands fa-airbnb"></i>
+    </a>
+
+    <!-- Search Bar (centered) -->
+    <div class="navbar-search-container mx-auto">
+      <form class="d-flex" role="search">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search destinations">
+          <button class="btn btn-search" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- ✅ Desktop Auth Buttons - only shown on ≥992px -->
+    <div class="d-none d-lg-flex auth-buttons ms-auto">
+      <% if (curruser) { %>
+        <a class="auth-btn home-btn" href="/listings/new">Airbnb your home</a>
+        <a class="auth-btn logout-btn" href="/logout">Log out</a>
+        <% } else { %>
+          <a class="auth-btn signup-btn" href="/signup">Sign up</a>
+          <a class="auth-btn login-btn" href="/login">Log in</a>
+          <% } %>
+    </div>
+
+    <!-- ✅ Mobile/Tablet Menu Button - visible on <992px -->
+    <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+
+  <!-- ✅ Mobile/Tablet Collapsible Menu -->
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav d-lg-none mobile-nav">
+      <% if (curruser) { %>
+        <a class="nav-link" href="/listings/new">
+          <i class="fa-solid fa-home me-2"></i>Airbnb your home
+        </a>
+        <% } %>
+          <a class="nav-link" href="/listings">
+            <i class="fa-solid fa-search me-2"></i>Explore
+          </a>
+
+
+          <hr class="dropdown-divider">
+          <% if (!curruser) { %>
+            <a class="nav-link" href="/signup">
+              <i class="fa-solid fa-user-plus me-2"></i>Sign up
+            </a>
+            <a class="nav-link" href="/login">
+              <i class="fa-solid fa-sign-in-alt me-2"></i>Log in
+            </a>
+            <% } %>
+              <% if (curruser) { %>
+                <a class="nav-link" href="/logout">
+                  <i class="fa-solid fa-sign-out-alt me-2"></i>Log out
+                </a>
+                <% } %>
+
+                  <!-- 🆕 TAX TOGGLE MOVED HERE - Mobile/Tablet Only -->
+                  <div class="mobile-tax-toggle">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="switchCheckReverseMobile" />
+                      <label class="form-check-label" for="switchCheckReverseMobile">
+                        Display total after taxes
+                      </label>
+                    </div>
+                  </div>
+    </div>
+  </div>
+</nav>

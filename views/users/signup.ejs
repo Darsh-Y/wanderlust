@@ -1,0 +1,53 @@
+<% layout("./layouts/boilerplate.ejs") %>
+
+<div class="auth-page-container d-flex align-items-center justify-content-center">
+  <div class="auth-card shadow-sm border rounded-4 p-4 w-100">
+    <h2 class="mb-4 text-center fw-bold login-title">Sign up for Wanderlust</h2>
+    <form action="/signup" method="POST" class="needs-validation" novalidate>
+      <div class="mb-3">
+        <label for="username" class="form-label">Username:</label>
+        <input
+          type="text"
+          class="form-control rounded-3"
+          id="username"
+          name="username"
+          required
+        />
+        <div class="invalid-feedback">Please enter your username.</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Email ID:</label>
+        <input
+          type="email"
+          class="form-control rounded-3"
+          id="email"
+          name="email"
+          required
+        />
+        <div class="invalid-feedback">Please enter a valid email address.</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Password:</label>
+        <input
+          type="password"
+          class="form-control rounded-3"
+          id="password"
+          name="password"
+          required
+        />
+        <div class="invalid-feedback">Please enter your password.</div>
+      </div>
+
+      <div class="d-grid mb-3">
+        <button type="submit" class="btn custom-login-btn btn-lg">Sign up</button>
+      </div>
+
+      <div class="text-center">
+        <span>Already have an account?</span>
+        <a href="/login" class="ms-1 text-decoration-none">Log in</a>
+      </div>
+    </form>
+  </div>
+</div>

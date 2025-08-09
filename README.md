@@ -2,7 +2,7 @@
 
 **Wanderlust** is a full-stack Airbnb-inspired web application built using **Node.js**, **Express**, **MongoDB**, and **EJS**. It allows users to register, log in, and manage property listings with map-based geolocation and image uploads.
 
-**Live Demo**: [https://wanderlust-ljm7.onrender.com](Wanderlust)
+**Live Demo**: [https://wanderlust-ljm7.onrender.com](https://wanderlust-ljm7.onrender.com)
 
 ---
 
@@ -46,7 +46,7 @@ This project is hosted on **Render**. All environment variables (MongoDB, Cloudi
 
 **Darshan**  
 GitHub: [@Darsh-Y](https://github.com/Darsh-Y)  
-Live Demo: [https://wanderlust-ljm7.onrender.com/](Wanderlust)
+Live Demo: [https://wanderlust-ljm7.onrender.com](https://wanderlust-ljm7.onrender.com)
 
 ---
 

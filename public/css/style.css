@@ -1,4 +1,4 @@
-/* ========== GLOBAL STYLES ========== */
+/* global styling */
 body {
   font-family: "Plus Jakarta Sans", sans-serif !important;
   display: flex;
@@ -9,8 +9,7 @@ body {
 .container {
   flex: 1;
 }
-
-/* ========== NAVBAR STYLES ========== */
+/* navbar */
 .navbar {
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -102,25 +101,29 @@ body {
   border: 1px solid transparent;
 }
 
-.signup-btn, .home-btn {
+.signup-btn,
+.home-btn {
   background-color: transparent;
   color: #222;
   border: 1px solid #ddd;
 }
 
-.signup-btn:hover, .home-btn:hover {
+.signup-btn:hover,
+.home-btn:hover {
   background-color: #f7f7f7;
   color: #222;
   border-color: #222;
   text-decoration: none;
 }
 
-.login-btn, .logout-btn {
+.login-btn,
+.logout-btn {
   background-color: #fe424d;
   color: white;
 }
 
-.login-btn:hover, .logout-btn:hover {
+.login-btn:hover,
+.logout-btn:hover {
   background-color: #e31c5f;
   color: white;
   text-decoration: none;
@@ -145,7 +148,7 @@ body {
   background-color: #f7f7f7;
 }
 
-/* ========== FOOTER STYLES ========== */
+/* footer */
 .f-info {
   background-color: #f8f9fa;
   padding: 1.2rem 1.5rem;
@@ -188,7 +191,6 @@ body {
   color: #666;
 }
 
-/* ========== INDEX PAGE STYLES ========== */
 /* Filters */
 #filters {
   display: flex;
@@ -253,8 +255,9 @@ body {
   display: flex;
   gap: 1.2rem;
   overflow-x: auto;
+  overflow-y: visible;
   scroll-snap-type: x mandatory;
-  padding: 0 1rem;
+  padding: 0.5rem 1rem;
   scrollbar-width: none;
 }
 
@@ -270,22 +273,34 @@ body {
   transition: transform 0.2s ease;
 }
 
-.listing-card-scroll:hover {
+/* Lift and shadow */
+.listing-card:hover {
   transform: translateY(-2px);
+  /* box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); */
+  /* filter: brightness(0.98); */
 }
 
 /* Card Styles */
 .listing-card {
   border: none !important;
-  transition: transform 0.2s ease;
-  background: transparent;
+  border-radius: 1rem;
+  background: #ffffff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
 
 .square-img {
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 1rem;
   width: 100%;
+  display: block;
+}
+
+.listing-card .card-img-top {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
 }
 
 .listing-title {
@@ -317,12 +332,11 @@ body {
   color: black;
 }
 
-/* Tax Info (Hidden) */
+/* Tax Info */
 .tax-info {
   display: none;
 }
 
-/* ========== SHOW PAGE STYLES ========== */
 /* Layout */
 .sticky-left-column {
   position: sticky;
@@ -612,7 +626,7 @@ body {
   text-align: center;
 }
 
-/* ========== AUTH PAGE STYLES ========== */
+/* Auth button */
 .auth-page-container {
   min-height: 100vh;
   padding: 3rem 1rem;
@@ -645,7 +659,6 @@ body {
   background-color: #fe424d !important;
 }
 
-/* ========== RESPONSIVE DESIGN ========== */
 /* Large screens and up */
 @media (min-width: 992px) {
   #tax-toggle {
@@ -814,7 +827,7 @@ body {
   }
 
   .listing-details-card {
-    
+
     padding: 1.5rem;
   }
 

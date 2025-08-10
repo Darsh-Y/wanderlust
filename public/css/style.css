@@ -834,6 +834,18 @@ body {
   .review-form {
     padding: 1.5rem;
   }
+
+  /* Login/Signup: reduce top spacing and align to top on small screens */
+  .auth-page-container {
+    min-height: auto;
+    padding: 1rem 1rem 2rem;
+    align-items: flex-start !important;
+    justify-content: center; /* keep horizontal centering */
+  }
+
+  .auth-card {
+    margin-top: 0.5rem;
+  }
 }
 
 /* Hidden utility class */
